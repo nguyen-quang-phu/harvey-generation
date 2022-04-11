@@ -1,0 +1,58 @@
+{
+  "name": "harvey-generation",
+  "displayName": "harvey-generation",
+  "description": "This is extension generate tool from Harvey",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.66.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:harvey-generation.helloWorld",
+    "onCommand:harvey-generation.generateEditorConfig"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "harvey-generation.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "harvey-generation.generateEditorConfig",
+        "title": "Harvey: Generate Editor Config File"
+      }
+    ]
+  },
+  "scripts": {
+    "clean": "rimraf out",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "postbuild": "mkdir out/templates && cp src/templates/DefaultTemplate.editorconfig out/templates",
+    "lint": "eslint src/**/*.ts",
+    "pretest": "npm run lint && npm run build",
+    "prewatch": "npm run build",
+    "watch": "tsc -watch",
+    "check-types": "tsc --noEmit",
+    "test": "node out/test/runTest.js",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.66.0",
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "@vscode/test-electron": "^2.1.3",
+    "eslint": "^8.11.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.2",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "rimraf": "^3.0.2"
+  }
+}
