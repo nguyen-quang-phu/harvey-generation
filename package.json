@@ -1,6 +1,10 @@
 {
+  "publisher": "harvey1998",
+  "author": "Harvey",
+  "repository": "https://github.com/nguyen-quang-phu/harvey-generation.git",
+  "homepage": "https://github.com/nguyen-quang-phu/harvey-generation/blob/main/README.md",
   "name": "harvey-generation",
-  "displayName": "harvey-generation",
+  "displayName": "Harvey Generation",
   "description": "This is extension generate tool from Harvey",
   "version": "0.1.0",
   "engines": {
