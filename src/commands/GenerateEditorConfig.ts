@@ -33,7 +33,9 @@ const GenerateEditorConfig = commands.registerCommand(
           wsedit.insert(filePath, new Position(0, 0), data.toString());
           workspace.applyEdit(wsedit);
           workspace.saveAll(true);
-          window.showInformationMessage("Created a new file: hello/world.md");
+          window.showInformationMessage(
+            `Created a new file: ${EDITOR_CONFIG_FILE}`
+          );
         }
       });
     } catch (error) {
