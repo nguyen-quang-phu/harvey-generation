@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "lib": ["es6"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": true,
+    "alwaysStrict": true,
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "pretty": true,
+
+    "paths": {
+    }
+  }
+}

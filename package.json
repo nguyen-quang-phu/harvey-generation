@@ -16,7 +16,8 @@
   "activationEvents": [
     "onCommand:harvey-generation.helloWorld",
     "onCommand:harvey-generation.generateEditorConfig",
-    "onCommand:harvey-generation.generateSnippet"
+    "onCommand:harvey-generation.generateSnippet",
+    "onCommand:harvey-generation.generateJsConfig"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -32,6 +33,10 @@
       {
         "command": "harvey-generation.generateSnippet",
         "title": "Harvey: Generate Snippet File"
+      },
+      {
+        "command": "harvey-generation.generateJsConfig",
+        "title": "Harvey: Generate JS Config File"
       }
     ]
   },
@@ -39,7 +44,7 @@
     "clean": "rimraf out",
     "prebuild": "npm run clean",
     "build": "tsc",
-    "postbuild": "mkdir out/templates && cp src/templates/DefaultTemplate.editorconfig out/templates",
+    "postbuild": "mkdir out/templates && cp -R src/templates out",
     "lint": "eslint src/**/*.ts",
     "pretest": "npm run lint && npm run build",
     "prewatch": "npm run build",
