@@ -30,6 +30,7 @@ const GenerateSnippet = commands.registerCommand(
         const filePath = Uri.file(
           wsPath + `/${VSCODE_FOLDER}/${pascalCase(fileName)}.code-snippets`
         );
+        wsedit.deleteFile(filePath, { ignoreIfNotExists: true });
         wsedit.createFile(filePath, { ignoreIfExists: true });
         wsedit.insert(filePath, new Position(0, 0), "{}");
         workspace.applyEdit(wsedit);

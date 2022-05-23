@@ -29,6 +29,7 @@ const GenerateEditorConfig = commands.registerCommand(
         if (err) {
           throw err;
         } else {
+          wsedit.deleteFile(filePath,{ignoreIfNotExists:true});
           wsedit.createFile(filePath, { ignoreIfExists: true });
           wsedit.insert(filePath, new Position(0, 0), data.toString());
           workspace.applyEdit(wsedit);
