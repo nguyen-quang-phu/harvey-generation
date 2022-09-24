@@ -1,0 +1,651 @@
+# Relaxed.Ruby.Style
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.1.2
+  Exclude:
+    - "db/schema.rb"
+    - "vendor/**/*"
+    - "**/vendor/**/*"
+    - "*/spec/dummy/**/*"
+    - "sandbox/**/*"
+    - "**/templates/**/*"
+    - "guides/node_modules/**/*"
+
+# We use class vars and will have to continue doing so for compatability
+Style/ClassVars:
+  Enabled: true
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - staging
+
+# We need these names for backwards compatability
+Naming/PredicateName:
+  Exclude:
+    - "app/serializers/**/*.rb"
+
+# We want to name rescued errors as error not simply e.
+Naming/RescuedExceptionsVariableName:
+  Enabled: true
+
+Naming/AccessorMethodName:
+  Enabled: true
+
+# This has been used for customization
+Style/MutableConstant:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  Enabled: true
+
+Style/EmptyElse:
+  Enabled: true
+
+Style/GuardClause:
+  Enabled: true
+
+Style/Next:
+  Enabled: true
+
+Style/NumericPredicate:
+  Enabled: true
+
+Style/WordArray:
+  Enabled: true
+
+Style/ConditionalAssignment:
+  Enabled: true
+
+Performance/Count:
+  Enabled: true
+
+Style/RaiseArgs:
+  Enabled: true
+
+Naming/BinaryOperatorParameterName:
+  Enabled: true
+
+# We can use good judgement here
+Style/RegexpLiteral:
+  Enabled: true
+
+# Unicode comments are useful
+Style/AsciiComments:
+  Enabled: true
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: true
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+  EnforcedStyle: aligned
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: no_comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: no_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: no_comma
+
+Rails/DynamicFindBy:
+  Whitelist:
+    - find_by_param
+    - find_by_param!
+
+# It's okay to skip model validations for some cases.
+Rails/SkipsModelValidations:
+  Enabled: false
+
+# We use a lot of
+#
+#     expect {
+#       something
+#     }.to { happen }
+#
+# syntax in the specs files.
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "*/spec/**/*"
+    - "spec/**/*" # For the benefit of apps that inherit from this config
+
+# We use eval to add common_spree_dependencies into the Gemfiles of each of our gems
+Security/Eval:
+  Exclude:
+    - "Gemfile"
+    - "common_spree_dependencies.rb"
+    - "*/Gemfile"
+
+Naming/VariableNumber:
+  Enabled: false
+
+# Write empty methods as you wish.
+Style/EmptyMethod:
+  Enabled: true
+
+# From http://relaxed.ruby.style/
+
+Style/Alias:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylealias
+
+Style/BeginBlock:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylebeginblock
+
+Style/BlockDelimiters:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#styleblockdelimiters
+
+Style/Documentation:
+  Enabled: false
+  StyleGuide: http://relaxed.ruby.style/#styledocumentation
+
+Layout/DotPosition:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#styledotposition
+
+Style/DoubleNegation:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#styledoublenegation
+
+Style/EndBlock:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#styleendblock
+
+Style/FormatString:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#styleformatstring
+
+Style/IfUnlessModifier:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#styleifunlessmodifier
+
+Style/Lambda:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylelambda
+
+Style/ModuleFunction:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylemodulefunction
+
+Style/MultilineBlockChain:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylemultilineblockchain
+
+Style/NegatedIf:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylenegatedif
+
+Style/NegatedWhile:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylenegatedwhile
+
+Style/ParallelAssignment:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#styleparallelassignment
+
+Style/PercentLiteralDelimiters:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylepercentliteraldelimiters
+
+Style/PerlBackrefs:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#styleperlbackrefs
+
+Style/Semicolon:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylesemicolon
+
+Style/SignalException:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylesignalexception
+
+Style/SingleLineBlockParams:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylesinglelineblockparams
+
+Style/SingleLineMethods:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylesinglelinemethods
+
+Layout/SpaceBeforeBlockBraces:
+  Enabled: true
+  EnforcedStyle: space
+  StyleGuide: http://relaxed.ruby.style/#stylespacebeforeblockbraces
+
+Layout/SpaceInsideParens:
+  Enabled: true
+  EnforcedStyle: no_space
+  StyleGuide: http://relaxed.ruby.style/#stylespaceinsideparens
+
+Style/SpecialGlobalVars:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylespecialglobalvars
+
+Style/StringLiterals:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylestringliterals
+
+Style/SymbolProc:
+  Enabled: true
+
+Style/TernaryParentheses:
+  Enabled: true
+
+Style/WhileUntilModifier:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#stylewhileuntilmodifier
+
+Lint/AmbiguousRegexpLiteral:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#lintambiguousregexpliteral
+
+Lint/AssignmentInCondition:
+  Enabled: true
+  StyleGuide: http://relaxed.ruby.style/#lintassignmentincondition
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockNesting:
+  Enabled: true
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: true
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: true
+
+# json.() is idiomatic in jbuilder files
+Style/LambdaCall:
+  Enabled: true
+
+# Rubocop doesn't understand side-effects
+Style/IdenticalConditionalBranches:
+  Enabled: true
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: true
+
+Performance/FlatMap:
+  Enabled: true
+
+Performance/RedundantMerge:
+  Enabled: true
+
+Performance/StartWith:
+  Enabled: true
+
+Performance/EndWith:
+  Enabled: true
+
+Performance/RegexpMatch:
+  Enabled: true
+
+Performance/ReverseEach:
+  Enabled: true
+
+Performance/UnfreezeString:
+  Enabled: true
+
+Performance/DeletePrefix:
+  Enabled: true
+
+Performance/DeleteSuffix:
+  Enabled: true
+
+Layout/LineLength:
+  Enabled: false
+
+Rails/Output:
+  Enabled: false
+
+# new cops
+
+Gemspec/DateAssignment:
+  Enabled: true
+
+Layout/SpaceBeforeBrackets:
+  Enabled: true
+
+Lint/AmbiguousAssignment:
+  Enabled: true
+
+Lint/DeprecatedConstants:
+  Enabled: true
+
+Lint/DuplicateBranch:
+  Enabled: true
+
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+
+Lint/EmptyBlock:
+  Enabled: true
+
+Lint/EmptyClass:
+  Enabled: true
+
+Lint/LambdaWithoutLiteralBlock:
+  Enabled: true
+
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+
+Lint/NumberedParameterAssignment:
+  Enabled: true
+
+Lint/OrAssignmentToConstant:
+  Enabled: true
+
+Lint/RedundantDirGlobSort:
+  Enabled: true
+
+Lint/SymbolConversion:
+  Enabled: true
+
+Lint/ToEnumArguments:
+  Enabled: true
+
+Lint/TripleQuotes:
+  Enabled: true
+
+Lint/UnexpectedBlockArity:
+  Enabled: true
+
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true
+
+Style/ArgumentsForwarding:
+  Enabled: true
+
+Style/CollectionCompact:
+  Enabled: true
+
+Style/DocumentDynamicEvalDefinition:
+  Enabled: true
+
+Style/EndlessMethod:
+  Enabled: true
+
+Style/HashConversion:
+  Enabled: true
+
+Style/HashExcept:
+  Enabled: true
+
+Style/IfWithBooleanLiteralBranches:
+  Enabled: true
+
+Style/NegatedIfElseCondition:
+  Enabled: true
+
+Style/NilLambda:
+  Enabled: true
+
+Style/RedundantArgument:
+  Enabled: true
+
+Style/SwapValues:
+  Enabled: true
+
+Layout/LineEndStringConcatenationIndentation:
+  Enabled: true
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: true
+
+Lint/AmbiguousRange:
+  Enabled: true
+
+Lint/EmptyInPattern:
+  Enabled: true
+
+Lint/IncompatibleIoSelectWithFiberScheduler:
+  Enabled: true
+
+Style/InPatternThen:
+  Enabled: true
+
+Performance/BigDecimalWithNumericArgument:
+  Enabled: true
+
+Performance/RedundantSortBlock:
+  Enabled: true
+
+Performance/AncestorsInclude:
+  Enabled: true
+
+Performance/StringInclude:
+  Enabled: true
+
+Performance/Squeeze:
+  Enabled: true
+
+Performance/SortReverse:
+  Enabled: true
+
+Performance/ReverseFirst:
+  Enabled: true
+
+Performance/RedundantStringChars:
+  Enabled: true
+
+Style/StringChars:
+  Enabled: true
+
+Style/RedundantSelfAssignmentBranch:
+  Enabled: true
+
+Style/QuotedSymbols:
+  Enabled: true
+
+Style/MultilineInPatternThen:
+  Enabled: true
+
+Style/FileRead:
+  Enabled: true
+
+Gemspec/RequireMFA:
+  Enabled: true
+
+Lint/RequireRelativeSelfPath:
+  Enabled: true
+
+Lint/UselessRuby2Keywords:
+  Enabled: true
+
+Naming/BlockForwarding:
+  Enabled: true
+
+Security/IoMethods:
+  Enabled: true
+
+Style/FileWrite:
+  Enabled: true
+
+Style/MapToHash:
+  Enabled: true
+
+Style/NestedFileDirname:
+  Enabled: true
+
+Style/NumberedParameters:
+  Enabled: false
+
+Style/NumberedParametersLimit:
+  Enabled: true
+
+Style/OpenStructUse:
+  Enabled: false
+
+Style/SelectByRegexp:
+  Enabled: true
+
+Performance/BlockGivenWithExplicitBlock:
+  Enabled: true
+
+Performance/CollectionLiteralInLoop:
+  Enabled: true
+
+Performance/ConcurrentMonotonicTime:
+  Enabled: true
+
+Performance/RedundantEqualityComparisonBlock:
+  Enabled: true
+
+Performance/RedundantSplitRegexpArgument:
+  Enabled: true
+
+Performance/MapCompact:
+  Enabled: false
+
+Performance/ConstantRegexp:
+  Enabled: true
+
+Performance/MethodObjectAsBlock:
+  Enabled: true
+
+Performance/StringIdentifierArgument:
+  Enabled: true
+
+Performance/Sum:
+  Enabled: true
+
+Rails/ActionControllerTestCase:
+  Enabled: false
+
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+
+Rails/AddColumnIndex:
+  Enabled: true
+
+Rails/AfterCommitOverride:
+  Enabled: true
+
+Rails/AttributeDefaultBlockValue:
+  Enabled: true
+
+Rails/CompactBlank:
+  Enabled: false
+
+Rails/DeprecatedActiveModelErrorsMethods:
+  Enabled: true
+
+Rails/DuplicateAssociation:
+  Enabled: true
+
+Rails/DuplicateScope:
+  Enabled: true
+
+Rails/DurationArithmetic:
+  Enabled: true
+
+Rails/EagerEvaluationLogMessage:
+  Enabled: true
+
+Rails/ExpandedDateRange:
+  Enabled: true
+
+Rails/FindById:
+  Enabled: true
+
+Rails/I18nLazyLookup:
+  Enabled: true
+
+Rails/I18nLocaleAssignment:
+  Enabled: true
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/Inquiry:
+  Enabled: true
+
+Rails/MailerName:
+  Enabled: true
+
+Rails/MatchRoute:
+  Enabled: true
+
+Rails/MigrationClassName:
+  Enabled: true
+
+Rails/NegateInclude:
+  Enabled: true
+
+Rails/Pluck:
+  Enabled: true
+
+Rails/PluckInWhere:
+  Enabled: true
+
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Enabled: true
+
+Rails/RedundantTravelBack:
+  Enabled: true
+
+Rails/RenderPlainText:
+  Enabled: true
+
+Rails/RenderInline:
+  Enabled: true
+
+Rails/RootJoinChain:
+  Enabled: true
+
+Rails/ShortI18n:
+  Enabled: true
+
+Rails/SquishedSQLHeredocs:
+  Enabled: true
+
+Rails/TimeZoneAssignment:
+  Enabled: true
+
+Rails/TransactionExitStatement:
+  Enabled: true
+
+Rails/UnusedIgnoredColumns:
+  Enabled: true
+
+Rails/WhereEquals:
+  Enabled: true
+
+Rails/WhereExists:
+  Enabled: true
+
+Rails/WhereNot:
+  Enabled: true

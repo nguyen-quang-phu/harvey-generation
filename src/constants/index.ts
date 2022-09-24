@@ -3,4 +3,7 @@ export const TEMPLATE_FOLDER = "templates";
 export const DEFAULT_EDITOR_CONFIG_FILE = "DefaultTemplate.editorconfig";
 export const EDITOR_CONFIG_FILE = ".editorconfig";
 export const JS_CONFIG_FILE = "jsconfig.json";
+export const DEFAULT_RAILS_TASK_FILE = "DefaultTemplate.railsTaskFile.json";
+export const RUBOCOP_FILE = ".rubocop.yml";
+export const DEFAULT_RUCOBOP_FILE = "DefaultTemplate.rubocop.yml";
 export const VSCODE_FOLDER = ".vscode";

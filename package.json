@@ -17,7 +17,10 @@
     "onCommand:harvey-generation.helloWorld",
     "onCommand:harvey-generation.generateEditorConfig",
     "onCommand:harvey-generation.generateSnippet",
-    "onCommand:harvey-generation.generateJsConfig"
+    "onCommand:harvey-generation.generateJsConfig",
+    "onCommand:harvey-generation.generateFolder",
+    "onCommand:harvey-generation.generateRubocop",
+    "onCommand:harvey-generation.generateTaskRails"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -37,6 +40,18 @@
       {
         "command": "harvey-generation.generateJsConfig",
         "title": "Harvey: Generate JS Config File"
+      },
+      {
+        "command": "harvey-generation.generateFolder",
+        "title": "Harvey: Generate Folder"
+      },
+      {
+        "command": "harvey-generation.generateTaskRails",
+        "title": "Harvey: Generate Rails Task"
+      },
+      {
+        "command": "harvey-generation.generateRubocop",
+        "title": "Harvey: Generate Rubocop"
       }
     ]
   },

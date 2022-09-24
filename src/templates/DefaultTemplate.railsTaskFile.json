@@ -1,0 +1,197 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Create new rails with postgres",
+      "type": "shell",
+      "command": "rails",
+      "args": ["new", ".", "-d", "postgresql"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Migrate database",
+      "type": "shell",
+      "command": "rails",
+      "args": ["db:migrate"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Rollback database",
+      "type": "shell",
+      "command": "rails",
+      "args": ["db:rollback"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Create database",
+      "type": "shell",
+      "command": "rails",
+      "args": ["db:create"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Generate",
+      "type": "shell",
+      "command": "rails",
+      "args": ["generate", "${input:generatorType}", "${input:generatorName}"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Generate within index action",
+      "type": "shell",
+      "command": "rails",
+      "args": [
+        "generate",
+        "${input:generatorType}",
+        "${input:generatorName}",
+        "index"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Destroy",
+      "type": "shell",
+      "command": "rails",
+      "args": ["destroy", "${input:generatorType}", "${input:generatorName}"],
+      "problemMatcher": []
+    },
+    // Routes
+    {
+      "label": "Routes",
+      "type": "shell",
+      "command": "rails",
+      "args": ["routes", "-E"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Routes with controller",
+      "type": "shell",
+      "command": "rails",
+      "args": ["routes", "-c", "${input:controllerName}", "-E"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Routes with specific search",
+      "type": "shell",
+      "command": "rails",
+      "args": ["routes", "-g", "${input:key}", "-E"],
+      "problemMatcher": []
+    },
+    // Yard gems
+    {
+      "label": "Yard gems",
+      "type": "shell",
+      "command": "yard gems",
+      "problemMatcher": []
+    },
+    {
+      "label": "Yard gems auto run when install",
+      "type": "shell",
+      "command": "yard config --gem-install-yri",
+      "problemMatcher": []
+    },
+    // Solargraph bundle
+    {
+      "label": "Solargraph bundle",
+      "type": "shell",
+      "command": "solargraph bundle",
+      "problemMatcher": []
+    },
+    // Devise
+    {
+      "label": "Devise install",
+      "type": "shell",
+      "command": "rails generate devise:install",
+      "problemMatcher": []
+    },
+    {
+      "label": "Devise generate model",
+      "type": "shell",
+      "command": "rails",
+      "args": ["generate", "devise", "${input:controllerName}"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Devise destroy model",
+      "type": "shell",
+      "command": "rails",
+      "args": ["destroy", "devise", "${input:controllerName}"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Devise generate view",
+      "type": "shell",
+      "command": "rails",
+      "args": ["generate", "devise:views"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Devise destroy view",
+      "type": "shell",
+      "command": "rails",
+      "args": ["destroy", "devise:views"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Devise generate view registrations",
+      "type": "shell",
+      "command": "rails",
+      "args": ["generate", "devise:views", "-v", "registrations"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Devise destroy view registrations",
+      "type": "shell",
+      "command": "rails",
+      "args": ["destroy", "devise:views", "-v", "registrations"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Devise generate view confirmations",
+      "type": "shell",
+      "command": "rails",
+      "args": ["generate", "devise:views", "-v", "confirmations"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Devise destroy view confirmations",
+      "type": "shell",
+      "command": "rails",
+      "args": ["destroy", "devise:views", "-v", "confirmations"],
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "type": "pickString",
+      "id": "generatorType",
+      "description": "What type of generator do you want to create?",
+      "options": ["model", "controller", "migration"],
+      "default": "model"
+    },
+    {
+      "type": "promptString",
+      "id": "generatorName",
+      "description": "Name your generator.",
+      "default": "my-new-generator"
+    },
+    {
+      "type": "promptString",
+      "id": "controllerName",
+      "description": "Name your controller",
+      "default": "controller"
+    },
+    {
+      "type": "promptString",
+      "id": "migrationName",
+      "description": "Name your migration",
+      "default": "migration"
+    },
+    {
+      "type": "promptString",
+      "id": "key",
+      "description": "Name your key",
+      "default": "key"
+    }
+  ]
+}
