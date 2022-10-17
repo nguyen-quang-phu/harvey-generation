@@ -1,40 +1,147 @@
 {
   "version": "2.0.0",
+  "options": {
+    "env": {
+      "controllers_folder": "app/controllers/api/v1",
+      "serializers_folder": "app/serializers",
+    }
+  },
+  "problemMatcher": [],
   "tasks": [
+    // Create new app
     {
       "label": "Create new rails with postgres",
       "type": "shell",
       "command": "rails",
-      "args": ["new", ".", "-d", "postgresql"],
-      "problemMatcher": []
+      "args": [
+        "new",
+        ".",
+        "-d",
+        "postgresq l"
+      ],
     },
+    // Interacte Database
     {
       "label": "Migrate database",
       "type": "shell",
       "command": "rails",
-      "args": ["db:migrate"],
-      "problemMatcher": []
+      "args": [
+        "db:migrate"
+      ],
     },
     {
-      "label": "Rollback database",
+      "label": "Roolback database",
       "type": "shell",
       "command": "rails",
-      "args": ["db:rollback"],
-      "problemMatcher": []
+      "args": [
+        "db:rollback"
+      ],
     },
     {
       "label": "Create database",
       "type": "shell",
       "command": "rails",
-      "args": ["db:create"],
-      "problemMatcher": []
+      "args": [
+        "db:create"
+      ],
     },
+    // Generate
     {
       "label": "Generate",
       "type": "shell",
       "command": "rails",
-      "args": ["generate", "${input:generatorType}", "${input:generatorName}"],
-      "problemMatcher": []
+      "args": [
+        "generate",
+        "${input:generatorType}",
+        "${input:generatorName}"
+      ],
+    },
+    // Controller
+    {
+      "label": "Generate Controller Without Test",
+      "hide": true,
+      "type": "shell",
+      "command": "rails",
+      "args": [
+        "generate",
+        "controller",
+        "api/v1/${input:generatorName}",
+        "--no-request-specs"
+      ],
+      "dependsOrder": "sequence",
+    },
+    {
+      "label": "Generate && Format Controller Without Test",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Generate Controller Without Test",
+        "Rubocop Controller"
+      ],
+    },
+    // Serializer
+    {
+      "label": "Generate Serializer",
+      "hide": true,
+      "type": "shell",
+      "command": "rails",
+      "args": [
+        "generate",
+        "serializer",
+        "${input:generatorName}",
+      ],
+    },
+    {
+      "label": "Generate && Format Serializer",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Generate Serializer",
+        "Rubocop Serializer"
+      ]
+    },
+    // Rubocop
+    {
+      "label": "Rubocop Controller",
+      "hide": true,
+      "type": "shell",
+      "command": "bundle",
+      "args": [
+        "exec",
+        "rubocop",
+        "-A",
+        "$controllers_folder/${input:generatorName}_controller.rb"
+      ],
+      "problemMatcher": {
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ]
+      }
+    },
+    {
+      "label": "Rubocop Serializer",
+      "hide": true,
+      "type": "shell",
+      "command": "bundle",
+      "args": [
+        "exec",
+        "rubocop",
+        "-A",
+        "$serializers_folder/${input:generatorName}_serializer.rb"
+      ],
+      "problemMatcher": {
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ]
+      }
+    },
+    {
+      "label": "Generate Controller Serializer Without Test",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Generate && Format Controller Without Test",
+        "Generate && Format Serializer"
+      ],
     },
     {
       "label": "Generate within index action",
@@ -46,127 +153,166 @@
         "${input:generatorName}",
         "index"
       ],
-      "problemMatcher": []
     },
     {
       "label": "Destroy",
       "type": "shell",
       "command": "rails",
-      "args": ["destroy", "${input:generatorType}", "${input:generatorName}"],
-      "problemMatcher": []
+      "args": [
+        "destroy",
+        "${input:generatorType}",
+        "${input:generatorName}"
+      ],
     },
     // Routes
     {
       "label": "Routes",
       "type": "shell",
       "command": "rails",
-      "args": ["routes", "-E"],
-      "problemMatcher": []
+      "args": [
+        "routes",
+        "-E"
+      ],
     },
     {
       "label": "Routes with controller",
       "type": "shell",
       "command": "rails",
-      "args": ["routes", "-c", "${input:controllerName}", "-E"],
-      "problemMatcher": []
+      "args": [
+        "routes",
+        "-c",
+        "${input:controllerName}",
+        "-E"
+      ],
     },
     {
       "label": "Routes with specific search",
       "type": "shell",
       "command": "rails",
-      "args": ["routes", "-g", "${input:key}", "-E"],
-      "problemMatcher": []
+      "args": [
+        "routes",
+        "-g",
+        "${input:key}",
+        "-E",
+      ],
     },
     // Yard gems
     {
       "label": "Yard gems",
       "type": "shell",
       "command": "yard gems",
-      "problemMatcher": []
     },
     {
       "label": "Yard gems auto run when install",
       "type": "shell",
       "command": "yard config --gem-install-yri",
-      "problemMatcher": []
     },
     // Solargraph bundle
     {
       "label": "Solargraph bundle",
       "type": "shell",
       "command": "solargraph bundle",
-      "problemMatcher": []
     },
     // Devise
     {
       "label": "Devise install",
       "type": "shell",
       "command": "rails generate devise:install",
-      "problemMatcher": []
     },
     {
       "label": "Devise generate model",
       "type": "shell",
       "command": "rails",
-      "args": ["generate", "devise", "${input:controllerName}"],
-      "problemMatcher": []
+      "args": [
+        "generate",
+        "devise",
+        "${input:controllerName}",
+      ],
     },
     {
       "label": "Devise destroy model",
       "type": "shell",
       "command": "rails",
-      "args": ["destroy", "devise", "${input:controllerName}"],
-      "problemMatcher": []
+      "args": [
+        "destroy",
+        "devise",
+        "${input:controllerName}",
+      ],
     },
     {
       "label": "Devise generate view",
       "type": "shell",
       "command": "rails",
-      "args": ["generate", "devise:views"],
-      "problemMatcher": []
+      "args": [
+        "generate",
+        "devise:views",
+      ],
     },
     {
       "label": "Devise destroy view",
       "type": "shell",
       "command": "rails",
-      "args": ["destroy", "devise:views"],
-      "problemMatcher": []
+      "args": [
+        "destroy",
+        "devise:views",
+      ],
     },
     {
       "label": "Devise generate view registrations",
       "type": "shell",
       "command": "rails",
-      "args": ["generate", "devise:views", "-v", "registrations"],
-      "problemMatcher": []
+      "args": [
+        "generate",
+        "devise:views",
+        "-v",
+        "registrations"
+      ],
     },
     {
       "label": "Devise destroy view registrations",
       "type": "shell",
       "command": "rails",
-      "args": ["destroy", "devise:views", "-v", "registrations"],
-      "problemMatcher": []
+      "args": [
+        "destroy",
+        "devise:views",
+        "-v",
+        "registrations"
+      ],
     },
     {
       "label": "Devise generate view confirmations",
       "type": "shell",
       "command": "rails",
-      "args": ["generate", "devise:views", "-v", "confirmations"],
-      "problemMatcher": []
+      "args": [
+        "generate",
+        "devise:views",
+        "-v",
+        "confirmations"
+      ],
     },
     {
       "label": "Devise destroy view confirmations",
       "type": "shell",
       "command": "rails",
-      "args": ["destroy", "devise:views", "-v", "confirmations"],
-      "problemMatcher": []
-    }
+      "args": [
+        "destroy",
+        "devise:views",
+        "-v",
+        "confirmations"
+      ],
+    },
   ],
+  // input
   "inputs": [
     {
       "type": "pickString",
       "id": "generatorType",
       "description": "What type of generator do you want to create?",
-      "options": ["model", "controller", "migration"],
+      "options": [
+        "model",
+        "controller",
+        "migration"
+      ],
       "default": "model"
     },
     {
@@ -192,6 +338,6 @@
       "id": "key",
       "description": "Name your key",
       "default": "key"
-    }
+    },
   ]
 }
